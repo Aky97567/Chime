@@ -4,26 +4,31 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akshayltc.chime.R;
 import com.akshayltc.chime.adapter.FileBrowserAdapter;
+import com.akshayltc.chime.callback.BaseListener;
 import com.akshayltc.chime.utilities.AppConstants;
+import com.akshayltc.chime.utilities.BaseEvents;
 
 import java.io.File;
 
 public class FileBrowserActivity extends BaseActivity {
 
-    RecyclerView fileBrowser;
-    FileBrowserAdapter fileBrowserAdapter;
+    private RecyclerView fileBrowser;
+    private FileBrowserAdapter fileBrowserAdapter;
+
+    private BaseListener mBaseListener = new BaseListener() {
+        @Override
+        public void onEvent(BaseEvents event, int position, Object... params) {
+            String currentDir = ((File) params[0]).getAbsolutePath();
+            getSupportActionBar().setTitle(currentDir);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,7 @@ public class FileBrowserActivity extends BaseActivity {
 
         getSupportActionBar().setTitle( sd.getAbsolutePath() );
 
-        fileBrowserAdapter = new FileBrowserAdapter(sd, this);
+        fileBrowserAdapter = new FileBrowserAdapter(sd, this, mBaseListener);
         fileBrowser.setLayoutManager(new LinearLayoutManager(this));
         fileBrowser.setAdapter(fileBrowserAdapter);
     }
