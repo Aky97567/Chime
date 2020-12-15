@@ -7,7 +7,7 @@
     tools:context=".activities.FileBrowserActivity"
     tools:showIn="@layout/activity_file_browser">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fileBrowser"
         android:orientation="vertical"
         android:layout_width="match_parent"
