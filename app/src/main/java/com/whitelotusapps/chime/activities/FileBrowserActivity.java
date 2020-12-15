@@ -1,4 +1,4 @@
-package com.akshayltc.chime.activities;
+package com.whitelotusapps.chime.activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -10,10 +10,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 
 import com.akshayltc.chime.R;
-import com.akshayltc.chime.adapter.FileBrowserAdapter;
-import com.akshayltc.chime.callback.BaseListener;
-import com.akshayltc.chime.utilities.AppConstants;
-import com.akshayltc.chime.utilities.BaseEvents;
+import com.whitelotusapps.chime.adapter.FileBrowserAdapter;
+import com.whitelotusapps.chime.callback.BaseListener;
+import com.whitelotusapps.chime.utilities.AppConstants;
+import com.whitelotusapps.chime.utilities.BaseEvents;
 
 import java.io.File;
 

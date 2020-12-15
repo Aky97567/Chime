@@ -1,13 +1,13 @@
-package com.akshayltc.chime.playback;
+package com.whitelotusapps.chime.playback;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Binder;
 import android.os.IBinder;
 
-import com.akshayltc.chime.models.Track;
-import com.akshayltc.chime.playback.MusicPlayerObserver;
-import com.akshayltc.chime.playback.ObserverSubject;
+import com.whitelotusapps.chime.models.Track;
+import com.whitelotusapps.chime.playback.MusicPlayerObserver;
+import com.whitelotusapps.chime.playback.ObserverSubject;
 
 import java.util.List;
 

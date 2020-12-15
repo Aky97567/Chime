@@ -1,4 +1,4 @@
-package com.akshayltc.chime.utilities;
+package com.whitelotusapps.chime.utilities;
 
 public interface AppConstants {
 

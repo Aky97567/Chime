@@ -1,6 +1,6 @@
-package com.akshayltc.chime.callback;
+package com.whitelotusapps.chime.callback;
 
-import com.akshayltc.chime.utilities.BaseEvents;
+import com.whitelotusapps.chime.utilities.BaseEvents;
 
 public interface BaseListener {
 

@@ -1,4 +1,4 @@
-package com.akshayltc.chime.adapter;
+package com.whitelotusapps.chime.adapter;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -12,8 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akshayltc.chime.R;
-import com.akshayltc.chime.callback.BaseListener;
-import com.akshayltc.chime.utilities.BaseEvents;
+import com.whitelotusapps.chime.callback.BaseListener;
+import com.whitelotusapps.chime.utilities.BaseEvents;
 
 import java.io.File;
 import java.io.FileFilter;

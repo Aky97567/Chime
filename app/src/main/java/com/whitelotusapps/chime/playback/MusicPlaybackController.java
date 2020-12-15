@@ -1,4 +1,4 @@
-package com.akshayltc.chime.playback;
+package com.whitelotusapps.chime.playback;
 
 import android.content.Context;
 import android.media.MediaPlayer;
@@ -28,7 +28,7 @@ public class MusicPlaybackController implements MediaPlayer.OnPreparedListener {
 
     //region globals
     //variables
-    private String TAG = com.akshayltc.chime.playback.MusicPlaybackController.class.getSimpleName();
+    private String TAG = com.whitelotusapps.chime.playback.MusicPlaybackController.class.getSimpleName();
     private static int currentState;
 
     //flags

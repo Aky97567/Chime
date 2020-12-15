@@ -1,4 +1,4 @@
-package com.akshayltc.chime.playback;
+package com.whitelotusapps.chime.playback;
 
 import android.content.Context;
 import android.media.MediaPlayer;

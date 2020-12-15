@@ -1,4 +1,4 @@
-package com.akshayltc.chime.activities;
+package com.whitelotusapps.chime.activities;
 
 import android.os.Bundle;
 import android.os.Handler;

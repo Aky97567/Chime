@@ -1,4 +1,4 @@
-package com.akshayltc.chime.application;
+package com.whitelotusapps.chime.application;
 
 import android.app.Application;
 

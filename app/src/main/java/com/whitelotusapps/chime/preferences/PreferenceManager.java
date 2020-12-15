@@ -1,4 +1,4 @@
-package com.akshayltc.musicplayer.chime.preferences;
+package com.whitelotusapps.musicplayer.chime.preferences;
 
 import android.content.Context;
 import android.content.SharedPreferences;

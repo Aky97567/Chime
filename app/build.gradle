@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion compile_sdk_version
     defaultConfig {
-        applicationId "com.akshayltc.chime"
+        applicationId 'com.whitelotusapps.chime'
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
         versionCode 1

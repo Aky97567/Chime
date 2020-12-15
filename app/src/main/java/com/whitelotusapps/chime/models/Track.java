@@ -1,4 +1,4 @@
-package com.akshayltc.chime.models;
+package com.whitelotusapps.chime.models;
 
 public class Track {
 
