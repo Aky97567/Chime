@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.akshayltc.chime.R;
+import com.whitelotusapps.chime.R;
 import com.whitelotusapps.chime.callback.BaseListener;
 import com.whitelotusapps.chime.utilities.BaseEvents;
 
@@ -130,9 +130,9 @@ public class FileBrowserAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
         if ( currentDir.getName().equals( baseDir.getName() ) ) {
-            return subdirList.length + fileList.length;
+            return subDirCount + fileCount;
         } else {
-            return subdirList.length + fileList.length + 1;
+            return subDirCount + fileCount;
         }
     }
 
@@ -157,7 +157,8 @@ public class FileBrowserAdapter extends RecyclerView.Adapter {
                 return file.isDirectory();
             }
         });
-        subDirCount = subdirList.length;
+
+        subDirCount = subdirList!=null?subdirList.length:0;
 
         fileList = currentDir.listFiles(new FileFilter() {
             @Override
@@ -167,7 +168,7 @@ public class FileBrowserAdapter extends RecyclerView.Adapter {
                         || file.getPath().endsWith(".ogg");
             }
         });
-        fileCount = fileList.length;
+        fileCount = fileList!=null?fileList.length:0;
     }
 
     public void sortByName(File[] fileset) {

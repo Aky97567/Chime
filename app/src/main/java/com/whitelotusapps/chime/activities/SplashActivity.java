@@ -5,7 +5,7 @@ import android.os.Handler;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.akshayltc.chime.R;
+import com.whitelotusapps.chime.R;
 
 /**
  * Created by Admin on 2017-07-05.

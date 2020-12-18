@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 
-import com.akshayltc.chime.R;
+import com.whitelotusapps.chime.R;
 import com.whitelotusapps.chime.adapter.FileBrowserAdapter;
 import com.whitelotusapps.chime.callback.BaseListener;
 import com.whitelotusapps.chime.utilities.AppConstants;
