@@ -6,3 +6,4 @@ TODO:
 - [ ] Filtering out non media files
 - [ ] Setup automated uploads to the play store with the Triple Play Plugin
 - [ ] Setup Github CI.
+- [ ] Add gradle task to generate app version.
