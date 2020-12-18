@@ -27,6 +27,13 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.whiteLotusConfig
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            outputFileName = output.outputFile.name.replace(".apk", "-" + variant.versionCode + ".apk")
         }
     }
 }
