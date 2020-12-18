@@ -1,5 +1,8 @@
 buildscript {
     ext {
+        app_version_code = ('git rev-list HEAD --count').execute().text.trim().toInteger()
+        app_version_name = ('git describe --tags').execute().text.trim()
+
         compile_sdk_version = 29
         target_sdk_version = compile_sdk_version
         min_sdk_version = 21
