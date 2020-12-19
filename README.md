@@ -2,7 +2,7 @@
 Clichéd name for a music player app being designed for learning the working of the Android Media Player API and UI elements, permissions etc.
 
 ## Build Status
-![APK build status](https://github.com/Aky97567/Chime/workflows/Android%20CI/badge.svg?branch=master)
+![Build](https://github.com/Aky97567/Chime/workflows/Build/badge.svg)
 
 ## TODO:
 - [X] Generate app version from git ref.
