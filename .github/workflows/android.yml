@@ -20,6 +20,6 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
     - name: Grant execute permission for build script
-      run: chmod +x ./scripts/build.sh
+      run: chmod +x /scripts/build.sh
     - name: Build with Gradle
-      run: ./gradlew build --args='-Pwhitelotus_storePassword=$WHITELOTUS_STOREPASSWORD -Pwhitelotus_keyAlias=$WHITELOTUS_KEYALIAS -Pwhitelotus_keyPassword=$WHITELOTUS_KEYPASSWORD'
+      run: ./scripts/build.sh
