@@ -22,4 +22,8 @@ jobs:
     - name: Grant execute permission for build script
       run: chmod +x ./scripts/build.sh
     - name: Build with Gradle
+      env:
+        WHITELOTUS_STOREPASSWORD: ${{ secrets.WHITELOTUS_STOREPASSWORD }}
+        WHITELOTUS_KEYALIAS: ${{ secrets.WHITELOTUS_KEYALIAS }}
+        WHITELOTUS_KEYPASSWORD: ${{ secrets.WHITELOTUS_KEYPASSWORD }}
       run: ./scripts/build.sh
