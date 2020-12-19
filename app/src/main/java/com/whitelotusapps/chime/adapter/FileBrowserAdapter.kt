@@ -15,10 +15,10 @@ import com.whitelotusapps.chime.utilities.BaseEvents
 import java.io.File
 import java.util.*
 
-class FileBrowserAdapter(private val baseDir: File, private val context: Context, private val mBaseListener: BaseListener) : RecyclerView.Adapter<Any?>() {
+class FileBrowserAdapter(private val baseDir: File, private val context: Context, private val mBaseListener: BaseListener) : RecyclerView.Adapter<RecyclerView.ViewHolder?>() {
     private var currentDir: File? = null
-    private var subdirList: Array<File>?
-    private var fileList: Array<File>?
+    private var subdirList: Array<File>? = null
+    private var fileList: Array<File>? = null
     private var subDirCount = 0
     private var fileCount = 0
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): FileViewHolder {
@@ -26,7 +26,7 @@ class FileBrowserAdapter(private val baseDir: File, private val context: Context
     }
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int) {
-        (viewHolder as FileViewHolder).position = i
+        (viewHolder as FileViewHolder).pos = i
         if (i == 0 && currentDir!!.name != baseDir.name) {
             viewHolder.name.text = ".."
             viewHolder.name.setTextColor(ContextCompat.getColor(context, R.color.secondary_text))
@@ -101,10 +101,10 @@ class FileBrowserAdapter(private val baseDir: File, private val context: Context
     inner class FileViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var name: TextView
         var RLFile: RelativeLayout
-        var position = 0
+        var pos = 0
 
         init {
-            // get the reference of item view's
+            // get the reference of item views
             name = itemView.findViewById(R.id.fileName)
             RLFile = itemView.findViewById(R.id.RLFile)
         }

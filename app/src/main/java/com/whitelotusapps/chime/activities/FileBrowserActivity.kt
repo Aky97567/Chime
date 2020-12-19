@@ -13,14 +13,17 @@ import com.whitelotusapps.chime.R
 import com.whitelotusapps.chime.adapter.FileBrowserAdapter
 import com.whitelotusapps.chime.callback.BaseListener
 import com.whitelotusapps.chime.utilities.AppConstants
+import com.whitelotusapps.chime.utilities.BaseEvents
 import java.io.File
 
 class FileBrowserActivity : BaseActivity() {
     private var fileBrowser: RecyclerView? = null
     private var fileBrowserAdapter: FileBrowserAdapter? = null
-    private val mBaseListener = BaseListener { event, position, params ->
-        val currentDir = (params[0] as File).absolutePath
-        supportActionBar!!.title = currentDir
+    private val mBaseListener = object : BaseListener {
+        override fun onEvent(event: BaseEvents?, position: Int, params: Array<out Any?>) {
+            val currentDir = (params[0] as File).absolutePath
+            supportActionBar!!.title = currentDir
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -30,7 +30,7 @@ class MusicPlaybackController : OnPreparedListener {
         const val PAUSE = 2
         const val STOP = 3
         const val RELEASE = 4
-        private var currentState: Int
+        private var currentState: Int = 0
 
         //flags
         /*  private boolean;*/ //misc
