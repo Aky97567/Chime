@@ -1,33 +1,32 @@
-package com.whitelotusapps.chime.activities;
+package com.whitelotusapps.chime.activities
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
-import androidx.core.app.ActivityCompat;
-import androidx.appcompat.app.AppCompatActivity;
+import android.app.Activity
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 
-public class BaseActivity extends AppCompatActivity {
-
-    protected void startFileBrowser() {
-        Intent intent = new Intent(getBaseContext(),FileBrowserActivity.class);
-        startActivity(intent);
+open class BaseActivity : AppCompatActivity() {
+    protected fun startFileBrowser() {
+        val intent = Intent(baseContext, FileBrowserActivity::class.java)
+        startActivity(intent)
     }
 
-    protected boolean checkPermissions(String[] permissions, int requestCode, Activity activity) {
+    protected fun checkPermissions(permissions: Array<String?>, requestCode: Int, activity: Activity?): Boolean {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            for(String permission:permissions) {
-                if (PackageManager.PERMISSION_GRANTED != getBaseContext().checkSelfPermission(permission)) {
-                    try {
-                        ActivityCompat.requestPermissions(activity, permissions, requestCode);
-                        return false;
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        throw e;
+            for (permission in permissions) {
+                if (PackageManager.PERMISSION_GRANTED != baseContext.checkSelfPermission(permission!!)) {
+                    return try {
+                        ActivityCompat.requestPermissions(activity!!, permissions, requestCode)
+                        false
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                        throw e
                     }
                 }
             }
         }
-        return true;
+        return true
     }
 }

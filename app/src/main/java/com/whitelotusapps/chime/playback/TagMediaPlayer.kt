@@ -1,22 +1,16 @@
-package com.whitelotusapps.chime.playback;
+package com.whitelotusapps.chime.playback
 
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.net.Uri;
+import android.content.Context
+import android.media.MediaPlayer
+import android.net.Uri
 
 /**
  * Created by Admin on 2017-07-16.
  */
+class TagMediaPlayer internal constructor(TAG: String?, mContext: Context?, source: String?) : MediaPlayer() {
+    private val mediaPlayer: MediaPlayer
 
-public class TagMediaPlayer extends MediaPlayer {
-
-    private MediaPlayer mediaPlayer;
-
-    TagMediaPlayer(String TAG, Context mContext, String source) {
-        super();
-        mediaPlayer = MediaPlayer.create(mContext, Uri.parse(source));
+    init {
+        mediaPlayer = create(mContext, Uri.parse(source))
     }
-
-
-
 }

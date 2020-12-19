@@ -1,9 +1,7 @@
-package com.whitelotusapps.chime.callback;
+package com.whitelotusapps.chime.callback
 
-import com.whitelotusapps.chime.utilities.BaseEvents;
+import com.whitelotusapps.chime.utilities.BaseEvents
 
-public interface BaseListener {
-
-    void onEvent(BaseEvents event, int position, Object... params);
-
+interface BaseListener {
+    fun onEvent(event: BaseEvents?, position: Int, vararg params: Any?)
 }

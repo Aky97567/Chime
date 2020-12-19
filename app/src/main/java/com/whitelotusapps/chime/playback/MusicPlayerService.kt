@@ -1,120 +1,98 @@
-package com.whitelotusapps.chime.playback;
+package com.whitelotusapps.chime.playback
 
-import android.content.Intent;
-import android.media.MediaPlayer;
-import android.os.Binder;
-import android.os.IBinder;
+import android.app.Service
+import android.content.Intent
+import android.media.MediaPlayer
+import android.media.MediaPlayer.OnCompletionListener
+import android.media.MediaPlayer.OnPreparedListener
+import android.os.Binder
+import android.os.IBinder
+import com.whitelotusapps.chime.models.Track
+import com.whitelotusapps.chime.playback.MusicPlayerService
 
-import com.whitelotusapps.chime.models.Track;
-import com.whitelotusapps.chime.playback.MusicPlayerObserver;
-import com.whitelotusapps.chime.playback.ObserverSubject;
-
-import java.util.List;
-
-public class MusicPlayerService extends android.app.Service implements MediaPlayer.OnPreparedListener,
-        MediaPlayer.OnErrorListener,
-        MediaPlayer.OnCompletionListener,
-        ObserverSubject {
-
-    private static final int NOTIFY_ID = 1;
-    private List<MusicPlayerObserver> mObservers;
-
-    private MediaPlayer mMediaPlayer;
-    private final IBinder playerBind = new MusicBinder();
-    ;
-
-    private List<Track> mPlaylist;
-    private Integer mPosition;
-
-    private Boolean isRepeating;
-    private Boolean isShuffling;
-    private Boolean isPrepared;
-    private Boolean isPaused;
+class MusicPlayerService : Service(), OnPreparedListener, MediaPlayer.OnErrorListener, OnCompletionListener, ObserverSubject {
+    private val mObservers: List<MusicPlayerObserver>? = null
+    private val mMediaPlayer: MediaPlayer? = null
+    private val playerBind: IBinder = MusicBinder()
+    private val mPlaylist: List<Track>? = null
+    private val mPosition: Int? = null
+    private val isRepeating: Boolean? = null
+    private val isShuffling: Boolean? = null
+    private val isPrepared: Boolean? = null
+    private val isPaused: Boolean? = null
 
     // Callback Methods______________________________________________
-    @Override
-    public void onCreate() {
+    override fun onCreate() {
         //...
     }
 
-    @Override
-    public void onPrepared(MediaPlayer mp) {
+    override fun onPrepared(mp: MediaPlayer) {
         //...
     }
 
-    @Override
-    public IBinder onBind(Intent intent) {
-        return playerBind;
+    override fun onBind(intent: Intent): IBinder? {
+        return playerBind
     }
 
-    @Override
-    public boolean onUnbind(Intent intent) {
-        mMediaPlayer.stop();
-        mMediaPlayer.release();
-        return false;
+    override fun onUnbind(intent: Intent): Boolean {
+        mMediaPlayer!!.stop()
+        mMediaPlayer.release()
+        return false
     }
 
-    @Override
-    public void onDestroy() {
-        stopForeground(true);
+    override fun onDestroy() {
+        stopForeground(true)
     }
 
-    @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
-        mp.reset();
-        return false;
+    override fun onError(mp: MediaPlayer, what: Int, extra: Int): Boolean {
+        mp.reset()
+        return false
     }
-
 
     // UTIL METHODS__________________________________________________
-    private String getCurrentTrackId() {
-        return mPlaylist.get(mPosition).getTrackId();
-    }
-
-    private String getCurrentAlbumId() {
-        return mPlaylist.get(mPosition).getAlbumId();
-    }
-
+    private val currentTrackId: String?
+        private get() = mPlaylist!![mPosition!!].trackId
+    private val currentAlbumId: String?
+        private get() = mPlaylist!![mPosition!!].albumId
 
     // MEDIA PLAYER INTERFACE________________________________________
-
-    public void play() {
+    fun play() {
         //...
     }
 
-    public void pause() {
+    fun pause() {
         //...
     }
 
-    public void resume() {
+    fun resume() {
         //...
     }
 
-    public void next() {
+    operator fun next() {
         //...
     }
 
-    public void previous() {
+    fun previous() {
         //...
     }
 
-    public void seekTo(int pos) {
+    fun seekTo(pos: Int) {
         //...
     }
 
-    @Override
-    public void onCompletion(MediaPlayer mediaPlayer) {
+    override fun onCompletion(mediaPlayer: MediaPlayer) {
         //..
     }
-
     // SERVICE INTERFACE PROVIDER_____________________________________
-
     /**
      * Interface through the component bound to this service can interact with it
      */
-    public class MusicBinder extends Binder {
-        public MusicPlayerService getService() {
-            return MusicPlayerService.this;
-        }
+    inner class MusicBinder : Binder() {
+        val service: MusicPlayerService
+            get() = this@MusicPlayerService
+    }
+
+    companion object {
+        private const val NOTIFY_ID = 1
     }
 }

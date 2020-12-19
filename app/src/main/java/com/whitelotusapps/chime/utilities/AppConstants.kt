@@ -1,9 +1,8 @@
-package com.whitelotusapps.chime.utilities;
+package com.whitelotusapps.chime.utilities
 
-public interface AppConstants {
-
-    //region request codes
-    int REQUEST_CODE_STORAGE = 10001;
-    //endregion
-
+interface AppConstants {
+    companion object {
+        //region request codes
+        const val REQUEST_CODE_STORAGE = 10001 //endregion
+    }
 }

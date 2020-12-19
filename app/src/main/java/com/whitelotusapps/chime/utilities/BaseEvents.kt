@@ -1,5 +1,5 @@
-package com.whitelotusapps.chime.utilities;
+package com.whitelotusapps.chime.utilities
 
-public enum BaseEvents {
+enum class BaseEvents {
     DIRECTORY_CHANGED
 }

@@ -1,87 +1,72 @@
-package com.whitelotusapps.chime.activities;
+package com.whitelotusapps.chime.activities
 
-import android.Manifest;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.os.Environment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import android.widget.Toast;
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Bundle
+import android.os.Environment
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.whitelotusapps.chime.R
+import com.whitelotusapps.chime.adapter.FileBrowserAdapter
+import com.whitelotusapps.chime.callback.BaseListener
+import com.whitelotusapps.chime.utilities.AppConstants
+import java.io.File
 
-import com.whitelotusapps.chime.R;
-import com.whitelotusapps.chime.adapter.FileBrowserAdapter;
-import com.whitelotusapps.chime.callback.BaseListener;
-import com.whitelotusapps.chime.utilities.AppConstants;
-import com.whitelotusapps.chime.utilities.BaseEvents;
+class FileBrowserActivity : BaseActivity() {
+    private var fileBrowser: RecyclerView? = null
+    private var fileBrowserAdapter: FileBrowserAdapter? = null
+    private val mBaseListener = BaseListener { event, position, params ->
+        val currentDir = (params[0] as File).absolutePath
+        supportActionBar!!.title = currentDir
+    }
 
-import java.io.File;
-
-public class FileBrowserActivity extends BaseActivity {
-
-    private RecyclerView fileBrowser;
-    private FileBrowserAdapter fileBrowserAdapter;
-
-    private BaseListener mBaseListener = new BaseListener() {
-        @Override
-        public void onEvent(BaseEvents event, int position, Object... params) {
-            String currentDir = ((File) params[0]).getAbsolutePath();
-            getSupportActionBar().setTitle(currentDir);
-        }
-    };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_file_browser);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        init();
-
-        if(checkPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                AppConstants.REQUEST_CODE_STORAGE,
-                this )) {
-            loadFiles();
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_file_browser)
+        val toolbar = findViewById<View>(R.id.toolbar) as Toolbar
+        setSupportActionBar(toolbar)
+        init()
+        if (checkPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
+                        AppConstants.REQUEST_CODE_STORAGE,
+                        this)) {
+            loadFiles()
         }
     }
 
-    private void init() {
-        fileBrowser = (RecyclerView) findViewById(R.id.fileBrowser);
+    private fun init() {
+        fileBrowser = findViewById<View>(R.id.fileBrowser) as RecyclerView
     }
 
-    private void loadFiles() {
-        File sd = Environment.getExternalStorageDirectory();
-        File[] sdDirList = sd.listFiles();
-
-        getSupportActionBar().setTitle( sd.getAbsolutePath() );
-
-        fileBrowserAdapter = new FileBrowserAdapter(sd, this, mBaseListener);
-        fileBrowser.setLayoutManager(new LinearLayoutManager(this));
-        fileBrowser.setAdapter(fileBrowserAdapter);
+    private fun loadFiles() {
+        val sd = Environment.getExternalStorageDirectory()
+        val sdDirList = sd.listFiles()
+        supportActionBar!!.title = sd.absolutePath
+        fileBrowserAdapter = FileBrowserAdapter(sd, this, mBaseListener)
+        fileBrowser!!.layoutManager = LinearLayoutManager(this)
+        fileBrowser!!.adapter = fileBrowserAdapter
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case AppConstants.REQUEST_CODE_STORAGE: {
-                boolean granted = true;
-                if (grantResults.length > 0) {
-                    for (int result:grantResults) {
-                        if ( result != PackageManager.PERMISSION_GRANTED) {
-                            granted = false;
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<String>, grantResults: IntArray) {
+        when (requestCode) {
+            AppConstants.REQUEST_CODE_STORAGE -> {
+                var granted = true
+                if (grantResults.size > 0) {
+                    for (result in grantResults) {
+                        if (result != PackageManager.PERMISSION_GRANTED) {
+                            granted = false
                         }
                     }
-
                 }
-                if ( !granted ) {
-                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show();
+                if (!granted) {
+                    Toast.makeText(this, "Permission denied to read your External storage", Toast.LENGTH_SHORT).show()
                 } else {
-                    loadFiles();
+                    loadFiles()
                 }
             }
         }
     }
-
 }
