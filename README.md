@@ -9,6 +9,7 @@ Clichéd name for a music player app being designed for learning the working of 
 - [X] Add signing config.
 - [X] Setup automated uploads to the play store with the Triple Play Plugin.
 - [X] Kotlin Conversion.
-- [ ] Setup Github CI.
+- [X] Setup Github CI.
+- [ ] Add Github CI job to upload apk to play store.
 - [ ] File Sorting by name.
 - [ ] Filtering out non media files.
