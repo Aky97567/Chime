@@ -5,7 +5,7 @@ TODO:
 - [X] Generate app version from git ref.
 - [X] Add signing config.
 - [X] Setup automated uploads to the play store with the Triple Play Plugin.
-- [ ] Kotlin Conversion
+- [ ] Kotlin Conversion.
 - [ ] Setup Github CI.
 - [ ] File Sorting by name.
 - [ ] Filtering out non media files.
